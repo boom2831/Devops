@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bmi-web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bmi-web
+  template:
+    metadata:
+      labels:
+        app: bmi-web
+    spec:
+      env:
+      - name: FLASK_ENV
+        value: "production"
+      resources:
+        limits:
+          memory: "256Mi"
+          cpu: "500m"
+      containers:
+      - name: bmi
+        image: bmi-web
+        ports:
+        - containerPort: 5000
+        readinessProbe:
+          httpGet:
+            path: /bmi
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 10

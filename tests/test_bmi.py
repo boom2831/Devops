@@ -1,5 +1,5 @@
 import unittest
-from bmi import calculate_bmi, get_bmi_category
+from app.bmi import calculate_bmi, get_bmi_category
 
 # --- PyTest Tests (Works with `pytest`) ---
 def test_calculate_bmi():
