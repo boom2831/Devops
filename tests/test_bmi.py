@@ -1,12 +1,8 @@
 import pytest
-from unittest.mock import patch
 from bmi import calculate_bmi, get_bmi_category
 
 def test_calculate_bmi():
-    with patch('builtins.input', side_effect=['1.75', '70']):  
-        height = float(input("Enter height in meters: "))
-        weight = float(input("Enter weight in kg: "))
-        assert round(calculate_bmi(weight, height), 2) == 22.86  
+    assert round(calculate_bmi(70, 1.75), 2) == 22.86  # 70kg, 1.75m → BMI ≈ 22.86
 
 def test_bmi_category():
     assert get_bmi_category(17) == "Underweight"
