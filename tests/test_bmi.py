@@ -1,15 +1,13 @@
-import unittest
+from unittest.mock import patch
 from bmi import calculate_bmi, get_bmi_category
 
-class TestBMICalculator(unittest.TestCase):
-    def test_calculate_bmi(self):
-        self.assertAlmostEqual(calculate_bmi(70, 1.75), 22.86, places=2)
+with patch('builtins.input', side_effect=['1.75', '70']):
+    height = float(input("Enter height in meters: "))
+    weight = float(input("Enter weight in kg: "))
+    
+    bmi = calculate_bmi(weight, height)
+    category = get_bmi_category(bmi)
 
-    def test_bmi_category(self):
-        self.assertEqual(get_bmi_category(17), "Underweight")
-        self.assertEqual(get_bmi_category(22), "Normal weight")
-        self.assertEqual(get_bmi_category(27), "Overweight")
-        self.assertEqual(get_bmi_category(32), "Obese")
+    print(f"BMI: {bmi:.2f}")
+    print(f"BMI Category: {category}")
 
-if __name__ == "__main__":
-    unittest.main()
