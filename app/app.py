@@ -5,6 +5,7 @@ from flask import Flask
 
 def create_app():
     app = Flask(__name__)
+    configure_routes(app)
 
 def configure_routes(app):
     @app.route('/bmi', methods=['POST'])
@@ -13,4 +14,3 @@ def configure_routes(app):
         bmi = calculate_bmi(data['weight'], data['height'])
         return jsonify(bmi=round(bmi, 2), category=get_bmi_category(bmi))
 
-configure_routes(app)
