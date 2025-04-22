@@ -13,7 +13,8 @@ RUN apk add --no-cache gcc musl-dev libffi-dev
 
 # Install Python requirements
 COPY requirements.txt .
-RUN pip install --no-cache-dir --upgrade pip && \
+RUN apk update &&\
+    pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
