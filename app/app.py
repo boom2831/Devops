@@ -2,7 +2,9 @@ from flask import request, jsonify
 from .bmi import calculate_bmi, get_bmi_category
 
 from flask import Flask
-app = Flask(__name__)
+
+def create_app():
+    app = Flask(__name__)
 
 def configure_routes(app):
     @app.route('/bmi', methods=['POST'])
