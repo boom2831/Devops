@@ -1,12 +1,6 @@
 from flask import request, jsonify
 from .bmi import calculate_bmi, get_bmi_category
 
-from flask import Flask
-
-def create_app():
-    app = Flask(__name__)
-    configure_routes(app)
-
 def configure_routes(app):
     @app.route('/bmi', methods=['POST'])
     def bmi_endpoint():
