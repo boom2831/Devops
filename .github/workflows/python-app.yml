@@ -29,5 +29,5 @@ jobs:
 
     - name: Run pylint
       run: |
-        pylint bmi_calculator.py
+        pylint bmi.py
 
