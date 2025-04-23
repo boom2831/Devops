@@ -1,32 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bmi-web
+  name: bmi-calculator
+  labels:
+    app: bmi-calculator
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: bmi-web
+      app: bmi-calculator
   template:
     metadata:
       labels:
-        app: bmi-web
+        app: bmi-calculator
     spec:
-      env:
-      - name: FLASK_ENV
-        value: "production"
-      resources:
-        limits:
-          memory: "256Mi"
-          cpu: "500m"
       containers:
-      - name: bmi
-        image: bmi-web
+      - name: bmi-calculator
+        image: bmi-calculator:latest
         ports:
         - containerPort: 5000
-        readinessProbe:
-          httpGet:
-            path: /bmi
-            port: 5000
-          initialDelaySeconds: 5
-          periodSeconds: 10
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
